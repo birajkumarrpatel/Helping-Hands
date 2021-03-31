@@ -1,0 +1,32 @@
+<div class="registration-main">
+  <mat-card>
+    <div class="title">Registration</div>
+
+    <mat-card-content>
+      <form class="my-form">
+        <mat-form-field class="full-width">
+          <mat-label>Name</mat-label>
+          <input matInput placeholder="Name" type="text" name="name" [(ngModel)]="user.name" required>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <mat-label>Email</mat-label>
+          <input matInput placeholder="Email" type="email" name="email" [(ngModel)]="user.email" required>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <mat-label>Password</mat-label>
+          <input matInput placeholder="Password" type="password" name="password" [(ngModel)]="user.password" required>
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+    <mat-card-actions class="btn-center">
+      <button color="primary" (click)="registration()" class="btn-registration">Sign Up</button>
+    </mat-card-actions>
+    <!-- <br> -->
+
+  </mat-card>
+  <div class="registration-card-footer">
+    <div class="right-item">
+      <span>Already have an account?&nbsp;<a (click)="redirectUser('/forgot-password')" class="links">Login</a></span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,195 @@
+<mat-tab-group [selectedIndex]="selectedTab" (selectedTabChange)="onTabChange($event)">
+
+  <!-- WORK PROFILE TAB -->
+  <mat-tab label="Add New Work">
+    <mat-card style="margin: 10px; padding: 10px;">
+      <mat-card-content>
+        <form class="my-form">
+          <mat-form-field class="full-width">
+            <mat-label>Work Title</mat-label>
+            <input matInput placeholder="Work Title" type="text" name="work_title" [(ngModel)]="profession.title"
+              required>
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <mat-label>Work Description</mat-label>
+            <textarea matInput placeholder="Work Description" type="text" name="work_description"
+              [(ngModel)]="profession.description" required></textarea>
+          </mat-form-field>
+          <div style="margin-top: 5px;padding-bottom: 10px;height: auto; width: 100%;">
+            <div class="price-input">
+              <mat-form-field class="full-width">
+                <mat-label>$ Consultation Charge</mat-label>
+                <input matInput placeholder="Charge in $" type="number" name="price" [(ngModel)]="profession.price"
+                  required>
+              </mat-form-field>
+            </div>
+            <div class="work-file">
+              <div style="position: unset;">
+                <input id="file-input" style="display: block; padding-top: 15px;" type="file"
+                  (change)="uploadWorkImage($event.target.files);" accept="image/*" multiple />
+              </div>
+            </div>
+          </div>
+          <div style="float: left; width: 100%;">
+            <mat-form-field appearance="fill" style="margin: 10px;">
+              <mat-label>Select Country</mat-label>
+              <mat-select (selectionChange)="countrySelected($event.value)" name="select_country"
+                [(ngModel)]="profession.location.country" required>
+                <mat-option disabled>Select Country</mat-option>
+                <mat-option *ngFor="let country of countries" [value]="country.isoCode">{{country.name}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="fill" style="margin: 10px;">
+              <mat-label>Select State</mat-label>
+              <mat-select (selectionChange)="stateSelected($event.value)" name="select_state"
+                [(ngModel)]="profession.location.state">
+                <mat-option disabled>Select State</mat-option>
+                <mat-option *ngFor="let country of states" [value]="country.isoCode">{{country.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="fill" style="margin: 10px;">
+              <mat-label>Select City</mat-label>
+              <mat-select (selectionChange)="citySelected($event.value)" name="select_city"
+                [(ngModel)]="profession.location.city">
+                <mat-option disabled>Select City</mat-option>
+                <mat-option *ngFor="let country of cities" [value]="country.name">{{country.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </form>
+      </mat-card-content>
+      <br>
+
+      <mat-card-actions class="btn-center" style="margin: 5px">
+        <button color="primary" (click)="addUpdateProfession()" class="btn-login">Save</button>
+      </mat-card-actions>
+    </mat-card>
+  </mat-tab>
+
+  <!-- MANAGE WORK -->
+  <mat-tab label="Manage Work/Jobs">
+    <div style="width: 100%; float: inherit; margin-top: 8px;">
+      <mat-form-field class="example-full-width" class="search-work-input">
+        <!-- <mat-icon matPrefix>search</mat-icon> -->
+        <input matInput placeholder="Search your posted jobs" name="search_work_input" [(ngModel)]="searchString">
+        <button (click)="searchProfession()" matSuffix mat-button color="primary">Search</button>
+        <button (click)="clearSearch()" matSuffix mat-button color="primary">
+          <mat-icon matPrefix>cancel</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+    <div class="job-card" *ngFor="let job of worksList">
+      <mat-card style="margin: 5px">
+        <div class="row">
+          <div class="col-xs-4 col-sm-4 col-xs-4">
+            <mat-carousel timings="200ms ease-in" [autoplay]="true" interval="3000" color="white">
+              <mat-carousel-slide style="height: 100% !important; background-size: contain !important;"
+                *ngFor="let image of job.work_image; let i = index" [image]="image" [hideOverlay]="true"
+                overlayColor="#ffffff" slideHeight="100%"></mat-carousel-slide>
+            </mat-carousel>
+          </div>
+          <div class="col-xs-8 col-sm-8 col-xs-8">
+            <h3 class="title-text" style="font-weight: 500;font-size: 20px;">{{job.title}} (${{job.price}})</h3>
+            <h4 style="font-weight: 200;font-size: 14px;">{{job.description && job.description.length > 150 ?
+              job.description.substr(0, 150) + ' ...' : job.description}}</h4>
+            <h4 style="font-weight: 200;font-size: 14px;">{{job.location.city}} - {{job.location.state}} -
+              {{job.location.country}}</h4>
+            <button (click)="enableDisableJob(job._id, job.is_deleted)" style="border: 1px solid #000000;background: #F0F0F0;border-radius: 8px;" mat-button
+              color="primary">{{job.is_deleted ? 'Enable' : 'Disable'}}</button>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+  </mat-tab>
+
+  <!-- MY PROFILE TAB -->
+  <mat-tab label="Manage Profile">
+    <div style="text-align: center; margin-top: 15px;padding-bottom: 25px;height: auto;">
+      <div class="login-main">
+        <img width="120px" height="120px" [src]="myProfile.picture" class="profile-image" />
+        <div style="position: unset;margin: -13px;">
+          <label for="file-input">
+            <span class="upload-profile">
+              <span class="material-icons" style="margin: -5px;">
+                camera_enhance
+              </span>
+            </span>
+          </label>
+          <input id="file-input" style="display: none" type="file" (change)="uploadProfilePicture($event.target.files)"
+            accept="image/*" />
+        </div>
+      </div>
+    </div>
+
+    <mat-card style="margin: 10px; padding: 10px;">
+      <mat-card-content>
+        <form class="my-form">
+          <mat-form-field class="full-width">
+            <mat-label>Name</mat-label>
+            <input matInput placeholder="Name" type="text" name="name" [(ngModel)]="myProfile.name" required>
+          </mat-form-field>
+          <div style="width: 100%;">
+            <div style="width: 49%; float: left;">
+              <mat-form-field class="full-width">
+                <mat-label>Mobile Number</mat-label>
+                <input matInput placeholder="Mobile Number (With Country Code)" type="text" name="mobile_number"
+                  [(ngModel)]="myProfile.mobile_number">
+              </mat-form-field>
+            </div>
+            <div style="width: 50%; margin-left: 1%; float: left;">
+              <mat-form-field class="full-width">
+                <mat-label>Experience in Years</mat-label>
+                <input matInput placeholder="Experience" type="number" name="experience"
+                  [(ngModel)]="myProfile.experience">
+              </mat-form-field>
+            </div>
+          </div>
+          <mat-form-field class="full-width">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="email" type="text" name="email" [(ngModel)]="myProfile.email" disabled=true>
+          </mat-form-field>
+
+        </form>
+      </mat-card-content>
+      <mat-card-actions class="btn-center" style="margin: 5px">
+        <button color="primary" (click)="changeProfile()" class="btn-login">Save</button>
+      </mat-card-actions>
+    </mat-card>
+
+  </mat-tab>
+
+  <!-- CHANGE PASSWORD TAB -->
+  <mat-tab label="Change Password">
+    <div class="login-main">
+      <mat-card style="margin-bottom: 10px;">
+        <mat-card-content>
+          <form class="my-form">
+            <mat-form-field class="full-width">
+              <mat-label>Current Password</mat-label>
+              <input matInput placeholder="Current Password" type="password" name="password"
+                [(ngModel)]="user.currentPassword" required>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+              <mat-label>New Password</mat-label>
+              <input matInput placeholder="Current Password" type="password" name="password"
+                [(ngModel)]="user.newPassword" required>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+              <mat-label>Confirm Password</mat-label>
+              <input matInput placeholder="Current Password" type="password" name="password"
+                [(ngModel)]="user.confirmPassword" required>
+            </mat-form-field>
+            <span *ngIf="passwordError" class="error-msg">{{ passwordError }}</span>
+          </form>
+        </mat-card-content>
+        <mat-card-actions class="btn-center">
+          <button color="primary" (click)="changePassword()" class="btn-login">Change Password</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+
+  </mat-tab>
+
+</mat-tab-group>

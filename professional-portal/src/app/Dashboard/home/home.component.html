@@ -1,0 +1,17 @@
+<mat-tab-group [selectedIndex]="selectedTab" (selectedTabChange)="onTabChange($event)">
+  <mat-tab label="New Meeting Request">
+    <div *ngIf="selectedTab === 0">
+      <app-new-meetings></app-new-meetings>
+    </div>
+  </mat-tab>
+  <mat-tab label="Upcoming Jobs">
+    <div *ngIf="selectedTab === 1">
+      <app-upcoming-jobs></app-upcoming-jobs>
+    </div>
+  </mat-tab>
+  <mat-tab label="Completed Jobs">
+    <div *ngIf="selectedTab === 2">
+      <app-completed-jobs></app-completed-jobs>
+    </div>
+  </mat-tab>
+</mat-tab-group>

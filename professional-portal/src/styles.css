@@ -1,0 +1,36 @@
+/* You can add global styles to this file, and also import other style files */
+@import '../node_modules/angular2-toaster/toaster.min.css';
+
+html, body {
+  position: relative;
+  max-width: 98%;
+  width: 100%;
+  margin: auto !important;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.remove-box-shadow {
+  box-shadow: none !important;
+}
+
+.float-right {
+  float: right;
+}
+
+.error-msg {
+  font-size: 12px;
+  color: #ed4e5e;
+}
+
+@media only screen and (max-width: 768px) {
+  html, body {
+    position: relative;
+    max-width: 100%;
+    width: 100%;
+    margin: auto !important;
+  }
+}

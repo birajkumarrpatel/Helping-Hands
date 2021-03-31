@@ -1,0 +1,192 @@
+::ng-deep .mat-tab-group.mat-primary .mat-ink-bar {
+  background-color: rgb(25, 145, 181) !important;
+}
+
+::ng-deep .carousel-slide .ng-star-inserted {
+  /* height: 100px !important; */
+  background-size: contain !important;
+}
+
+.login-main {
+  margin: auto;
+  width: 60%;
+  max-width: 100%;
+  margin-top: 50px;
+}
+
+.title {
+  text-align: center;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.btn-center {
+  text-align: center;
+}
+
+.btn-login {
+  background: #0bb5af;
+  color: white;
+  padding: 5px 10px 5px 10px;
+  font-size: 16px;
+  font-weight: 300;
+  border-radius: 5px;
+}
+
+.links {
+  color: #0bb5af;
+  font-weight: 500
+}
+
+.login-card-footer {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin-left: 5px;
+  margin-right: 5px;
+  font-size: 14px;
+}
+
+.left-item {
+  float: left;
+}
+
+.right-item {
+  float: right;
+}
+
+.price-input {
+  width: 49%;
+  float: left;
+  margin-right: 10px;
+}
+
+.work-file {
+  width: 49%;
+  float: left;
+  margin-left: 10px;
+}
+
+.profile-image {
+  border-radius: 50%;
+  border: 2px solid #f5c6c6;
+}
+
+.job-card {
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.search-work-input {
+  display: inherit;
+  position: relative;
+  margin: auto;
+  width: 40%;
+  max-width: 100%;
+}
+
+/* margin-left: 10px; margin-right: 10px; */
+
+@media only screen and (max-width: 768px) {
+  .login-main {
+    margin: auto;
+    width: 80%;
+    max-width: 100%;
+    margin-top: 35px;
+  }
+  .right-item {
+    float: left;
+  }
+  .btn-login {
+    background: #0bb5af;
+    color: white;
+    padding: 3px 8px 3px 8px;
+    font-size: 14px;
+    font-weight: 300;
+    border-radius: 5px;
+  }
+  .title {
+    text-align: center;
+    font-weight: 500;
+    font-size: 16px;
+  }
+  .login-card-footer {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    margin-left: 5px;
+    margin-right: 5px;
+    font-size: 12px;
+  }
+  .price-input {
+    width: 100%;
+    float: left;
+  }
+  .work-file {
+    width: 100%;
+    float: left;
+  }
+  .title-text {
+    margin-top: 8px;
+  }
+  .search-work-input {
+    display: inherit;
+    position: relative;
+    margin: auto;
+    width: 95%;
+    max-width: 100%;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .login-main {
+    margin: auto;
+    width: 95%;
+    max-width: 100%;
+    margin-top: 30px;
+  }
+  .right-item {
+    float: left;
+  }
+  .btn-login {
+    background: #0bb5af;
+    color: white;
+    padding: 3px 8px 3px 8px;
+    font-size: 14px;
+    font-weight: 300;
+    border-radius: 5px;
+  }
+  .title {
+    text-align: center;
+    font-weight: 500;
+    font-size: 16px;
+  }
+  .login-card-footer {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    margin-left: 5px;
+    margin-right: 5px;
+    font-size: 12px;
+  }
+  .price-input {
+    width: 100%;
+    float: left;
+  }
+  .work-file {
+    width: 100%;
+    float: left;
+  }
+  .title-text {
+    margin-top: 8px;
+  }
+  .search-work-input {
+    display: inherit;
+    position: relative;
+    margin: auto;
+    width: 95%;
+    max-width: 100%;
+  }
+}

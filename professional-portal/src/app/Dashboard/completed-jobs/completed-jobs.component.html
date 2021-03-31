@@ -1,0 +1,62 @@
+<div *ngIf="!isUpcomingDataFound" style="margin-top: 50px; text-align: center;">
+  <div layout="column" layout-align="center center" class="tc-grey-500 mat-typography pad-lg">
+    <!-- <mat-icon matListAvatar class="text-super push-bottom" style="font-size: 40px;">work</mat-icon>
+    <h2>Oops...No data found for you!</h2> -->
+    <img src="https://res.cloudinary.com/djploevtk/image/upload/v1616501327/2953962_lluwvf.jpg" style="width: 30%;" />
+    <br><br>
+  </div>
+</div>
+
+<!-- JOB CARDS -->
+<div class="content">
+  <div fxLayout="row wrap" fxLayoutGap="12px grid">
+    <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let job of worksList; let i = index">
+      <mat-card class="mat-elevation-z4" style="height: 370px">
+        <mat-card-header>
+        </mat-card-header>
+
+        <mat-card-content>
+          <div style="text-align: center;">
+            <span style="float: right;">
+              {{job.completed_on | date: 'dd/MM/yyyy hh:mm'}}
+            </span>
+            <br>
+            <img [src]="job.user.profile_picture" height="90px" width="90px" style="text-align: center;" />
+          </div>
+          <br>
+          <div style="font-size: 15px; font-weight: 400;">
+            {{job.user.name}}
+          </div>
+          <div style="margin-top: 5px;">
+            <mat-icon style="vertical-align: bottom; color: #f5a105;" matPrefix>email</mat-icon>
+            &nbsp; <mat-label>
+              <a href="mailto:{{job.user.email}}">{{job.user.email}}</a>
+            </mat-label>
+          </div>
+          <div style="margin-top: 5px;" *ngIf="job.user.mobile_number && job.user.mobile_number !== ''">
+            <mat-icon style="vertical-align: bottom; color: #f5a105;" matPrefix>call</mat-icon>
+            &nbsp; <mat-label>
+              <a href="phoneto:{{job.user.mobile_number}}">{{job.user.mobile_number}}</a>
+            </mat-label>
+          </div>
+          <div style="margin-top: 5px;" *ngIf="job.user.address && job.user.address !== ''">
+            <mat-icon style="vertical-align: bottom; color: #f5a105;" matPrefix>share_location</mat-icon>
+            &nbsp; <mat-label>
+              {{job.user.address}}
+            </mat-label>
+          </div>
+
+        </mat-card-content>
+        <mat-card-footer>
+          <button *ngIf="job.status === 'completed'" mat-button class="complete-button" disabled style="background-color: aliceblue; color: blue;" disabled>
+            You received {{job.average_rate}} <mat-icon style="color: khaki;">star</mat-icon>
+          </button>
+          <button *ngIf="job.status === 'professional_completed'" mat-button class="complete-button" (click)="remindForReview(job._id, job.user._id)">
+            REMIND FOR REVIEW
+          </button>
+          <vr></vr>
+        </mat-card-footer>
+      </mat-card>
+    </div>
+  </div>
+</div>
