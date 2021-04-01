@@ -1,0 +1,65 @@
+
+<div *ngIf="!isUpcomingDataFound" style="margin-top: 50px; text-align: center;">
+  <div layout="column" layout-align="center center" class="tc-grey-500 mat-typography pad-lg">
+    <img src="https://res.cloudinary.com/djploevtk/image/upload/v1616501327/2953962_lluwvf.jpg" style="width: 30%;" />
+    <br><br>
+  </div>
+</div>
+
+<!-- JOB CARDS -->
+<div class="content">
+  <div fxLayout="row wrap" fxLayoutGap="12px grid">
+    <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let job of worksList; let i = index">
+      <mat-card class="mat-elevation-z4" style="height: 325px">
+        <mat-card-header>
+        </mat-card-header>
+
+        <mat-card-content>
+          <div style="text-align: center;">
+            <!-- <span style="float: right;">
+              {{job.createdAt | date: 'dd/MM/yyyy hh:mm'}}
+            </span> -->
+            <br>
+            <img [src]="job.professional_id.profile_picture" height="90px" width="90px" style="text-align: center;" />
+          </div>
+          <br>
+          <div style="font-size: 15px; font-weight: 400;">
+            {{job.professional_id.name}}
+          </div>
+          <div style="margin-top: 5px;">
+            <mat-icon style="vertical-align: bottom; color: #f5a105;" matPrefix>email</mat-icon>
+            &nbsp; <mat-label>
+              <a href="mailto:{{job.professional_id.email}}">{{job.professional_id.email}}</a>
+            </mat-label>
+          </div>
+          <div style="margin-top: 5px;" *ngIf="job.professional_id.mobile_number && job.professional_id.mobile_number !== ''">
+            <mat-icon style="vertical-align: bottom; color: #f5a105;" matPrefix>call</mat-icon>
+            &nbsp; <mat-label>
+              <a href="phoneto:{{job.professional_id.mobile_number}}">{{job.professional_id.mobile_number}}</a>
+            </mat-label>
+          </div>
+          <div style="margin-top: 5px;">
+            <mat-icon style="vertical-align: bottom; color: #f5a105;" matPrefix>stars</mat-icon>
+            &nbsp; <mat-label>
+              {{job.average_rate}}&nbsp;({{job.total_rating_received}})
+              <i style="font-size: 10px;">*Ratings given by you</i>
+            </mat-label>
+          </div>
+          <br>
+          <i>*You have paid <b>${{job.work_id.price}}</b> for this meeting</i>
+
+        </mat-card-content>
+        <mat-card-footer>
+          <button disabled *ngIf="job.status === 'client_cancelled'" style="color: #e35e29;" mat-button class="complete-button" (click)="openReviewDialog(job)">
+            THIS IS CANCELLED BY YOU
+          </button>
+          <button disabled *ngIf="job.status === 'completed'" mat-button style="color:darkblue;" class="complete-button" (click)="openReviewDialog(job)">
+            THIS IS COMPLETED
+          </button>
+          
+          <vr></vr>
+        </mat-card-footer>
+      </mat-card>
+    </div>
+  </div>
+</div>

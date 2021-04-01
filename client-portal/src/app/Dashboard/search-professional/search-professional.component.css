@@ -1,0 +1,58 @@
+.example-form {
+  margin: auto;
+  width: 100%;
+  max-width: 80%;
+}
+
+.example-full-width {
+  width: 95%;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 20px;
+  border: 1px solid #c2c0c0;
+  padding-left: 10px;
+  border-radius: 5px;
+}
+
+/* ::ng-deep .mat-form-field-underline {
+  display: none;
+} */
+
+/* .no-padding > ::ng-deep .mat-form-field-underline {
+  display: none;
+} */
+
+::ng-deep .mat-form-field-wrapper.mat-form-field-underline {
+  /* padding-bottom: 7px !important; */
+  /* display: none; */
+}
+
+::ng-deep .carousel-slide .ng-star-inserted {
+  /* height: 100px !important; */
+  background-size: contain !important;
+}
+
+.content {
+  padding: 16px;
+}
+
+.content > mat-card {
+  width: 200px;
+}
+
+@media only screen and (max-width: 768px) {
+  .example-form {
+    margin: auto;
+    width: 100%;
+    max-width: 90%;
+  }
+  .example-full-width {
+    width: 100%;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 10px;
+    border: 1px solid #c2c0c0;
+    border-radius: 5px;
+    padding-left: 5px;
+  }
+}

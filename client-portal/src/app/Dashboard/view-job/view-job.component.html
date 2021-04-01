@@ -1,0 +1,91 @@
+<div class="content">
+  <div fxLayout="row wrap" fxLayoutGap="12px grid">
+    <div fxFlex="100%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let job of [1]; let i = index">
+
+      <br>
+      <mat-carousel timings="200ms ease-in" [autoplay]="true" interval="3000" color="white">
+        <mat-carousel-slide style="height: 100% !important; background-size: contain !important;"
+          *ngFor="let image of jobData.work_image; let i = index" [image]="image" [hideOverlay]="true"
+          overlayColor="#ffffff" slideHeight="100%"></mat-carousel-slide>
+      </mat-carousel>
+      <br>
+      <h2>
+        {{jobData.title}}
+      </h2>
+      <p>
+        {{jobData.description}}
+      </p>
+      <button mat-button style="background-color: #F0F0F0; margin: 5px; color: black;" disabled>
+        Review Received: <mat-icon style="color: #FDCC0D;">stars</mat-icon>&nbsp;{{jobData.average_rate}}
+        ({{jobData.total_rating_received}})
+      </button>
+      <button mat-button style="background-color: #F0F0F0; margin: 5px; color: black;" disabled>
+        Located At: <mat-icon style="color: #18bff2;">location_on</mat-icon> {{jobData.location.city}}
+      </button>
+      <button mat-button style="background-color: #F0F0F0; margin: 5px; color: black;" disabled>
+        Price: &nbsp;<mat-icon style="color: #c6c76d;">monetization_on</mat-icon>&nbsp; ${{jobData.price}}
+      </button>
+
+    </div>
+  </div>
+  <hr>
+  <div>
+    <h3 style="text-decoration: underline;">Expert's Details:</h3>
+    <div style="font-size: 15px; font-weight: 400;">
+      {{jobData.user_id.name}}
+    </div>
+    <div style="margin-top: 5px;">
+      <mat-icon style="vertical-align: bottom; color: #f5a105;" matPrefix>email</mat-icon>
+      &nbsp; <mat-label>
+        <a href="mailto:{{jobData.user_id.email}}">{{jobData.user_id.email}}</a>
+      </mat-label>
+    </div>
+    <div style="margin-top: 5px;" *ngIf="jobData.user_id.mobile_number && jobData.user_id.mobile_number !== ''">
+      <mat-icon style="vertical-align: bottom; color: #f5a105;" matPrefix>call</mat-icon>
+      &nbsp; <mat-label>
+        <a href="phoneto:{{jobData.user_id.mobile_number}}">{{jobData.user_id.mobile_number}}</a>
+      </mat-label>
+    </div>
+    <div style="margin-top: 5px;" *ngIf="jobData.user_id.experience && jobData.user_id.experience !== ''">
+      <mat-icon style="vertical-align: bottom; color: #f5a105;" matPrefix>integration_instructions</mat-icon>
+      &nbsp; <mat-label>
+        {{jobData.user_id.experience}} <i style="font-size: 10px;">*Years of experience</i>
+      </mat-label>
+    </div>
+  </div>
+  <br>
+  <button *ngIf="isLoggedIn" mat-button (click)="addToFav(jobData._id); $event.stopPropagation()"
+    style="background-color: #F0F0F0; margin: 5px;">
+    Add/Remove from Favorite: <mat-icon *ngIf="!jobData.is_fav">favorite_border</mat-icon>
+    <mat-icon *ngIf="jobData.is_fav" style="color: tomato;">favorite</mat-icon>
+  </button>
+
+  <br><br>
+
+  <form #checkout="ngForm" (ngSubmit)="onSubmit(checkout)" class="checkout">
+    <div class="form-row">
+      <label for="card-info">Choose date & Enter your card details to book</label>
+      <br><br>
+      <mat-form-field class="example-form-field" style="height: 50px;">
+        <mat-label style="font-size: 14px;">Select Date</mat-label>
+        <input matInput readonly [min]="todaysDate" style="font-size: 14px;" [matDatepicker]="datepicker"
+          name="calender" [(ngModel)]="selectedDate">
+        <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+        <mat-datepicker #datepicker>
+          <button mat-button matDatepickerCancel>Cancel</button>
+          <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+        </mat-datepicker>
+      </mat-form-field>
+      <br>
+      <br>
+      <div id="card-info" #cardInfo></div>
+      <div id="card-errors" style="font-size: 12px; color: crimson;" role="alert" *ngIf="error">{{ error }}</div>
+    </div>
+    <button type="submit">&nbsp;Pay and Book Meeting&nbsp;</button>
+  </form>
+
+
+</div>
+<i>*Selected Service Provider will try to reach out to you via contacting you over mobile phone. After work gets done,
+  he will complete his job from his ends. T&C Apply</i>
+<br>

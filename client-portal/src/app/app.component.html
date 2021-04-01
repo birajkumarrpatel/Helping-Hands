@@ -1,0 +1,57 @@
+<ngx-loading [show]="utilsService.enableLoading" [config]="{ fullScreenBackdrop:true }"></ngx-loading>
+<toaster-container [toasterconfig]="config"></toaster-container>
+
+<mat-toolbar style="background-color: #1991b5; color: white; text-align: center;" class="main-toolbar">
+  <mat-icon *ngIf="isMobileDevice" (click)="toggleMenuItems(); drawer.toggle()">menu</mat-icon>
+  <div style="width: 100%;" (click)="router.navigate(['/'])">
+    HELPING HANDS
+  </div>
+</mat-toolbar>
+
+<div style="height: 100%;">
+
+
+  <mat-card *ngIf="!isMobileDevice">
+    <div>
+
+      <button mat-raised-button class="remove-box-shadow" (click)="router.navigate(['/search'])">
+        <mat-icon>search</mat-icon> Search Professional
+      </button>
+
+
+      <button *ngIf="dynamicIcon === 'account_circle'" mat-raised-button class="remove-box-shadow float-right"
+        (click)="logMeOut()">
+        <mat-icon>logout</mat-icon> &nbsp; Logout
+      </button>
+      <button *ngIf="dynamicIcon === 'account_circle'" mat-raised-button class="remove-box-shadow float-right"
+        (click)="redirectToLogin('/work')">
+        <mat-icon>history</mat-icon> &nbsp; History
+      </button>
+      <button mat-raised-button class="remove-box-shadow float-right" (click)="profileLoginClick()">
+        <mat-icon>{{dynamicIcon}}</mat-icon> &nbsp; {{ dynamicTitle }}
+      </button>
+    </div>
+  </mat-card>
+
+
+  <mat-drawer-container style="display: inline;">
+    <mat-drawer #drawer mode="over" class="example-container">
+
+      <button mat-raised-button class="remove-box-shadow" (click)="drawer.toggle(); router.navigate(['/search'])"
+        style="width: 100%; text-align: left;">
+        <mat-icon>search</mat-icon> Search Professional
+      </button>
+      <br>
+      <button mat-raised-button class="remove-box-shadow float-right" style="width: 100%; text-align: left;"
+        (click)="drawer.toggle(); profileLoginClick()">
+        <mat-icon>{{dynamicIcon}}</mat-icon> &nbsp; {{ dynamicTitle }}
+      </button>
+      <button *ngIf="dynamicIcon === 'account_circle'" mat-raised-button class="remove-box-shadow float-right"
+        (click)="drawer.toggle(); logMeOut()">
+        <mat-icon>logout</mat-icon> &nbsp; Logout
+      </button>
+    </mat-drawer>
+  </mat-drawer-container>
+
+  <router-outlet></router-outlet>
+</div>

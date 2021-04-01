@@ -1,0 +1,70 @@
+.rating {
+  border: none;
+  float: left;
+}
+
+.rating:not(:checked)>input {
+  position: absolute;
+  top: -9999px;
+  clip: rect(0, 0, 0, 0);
+}
+
+.rating:not(:checked)>label {
+  float: right;
+  width: 1em;
+  padding: 0.1em;
+  overflow: hidden;
+  white-space: nowrap;
+  cursor: pointer;
+  font-size: 200%;
+  line-height: 1.2;
+  color: #ddd;
+}
+
+.rating:not(:checked)>label:before {
+  content: '★ ';
+}
+
+.rating>input:checked~label {
+  color: #f70;
+}
+
+.rating:not(:checked)>label:hover, .rating:not(:checked)>label:hover~label {
+  color: gold;
+}
+
+.rating>input:checked~label:hover, .rating>input:checked~label:hover~label, .rating>label:hover~input:checked~label {
+  color: #ea0;
+}
+
+.button {
+  padding: 7px 22px;
+  font-size: 15px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 8px;
+}
+
+.button2 {
+  padding: 7px 22px;
+  font-size: 15px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #000;
+  background-color: #F0F0F0;
+  border: none;
+  border-radius: 8px;
+}
+
+.button:hover {background-color: #3e8e41}
+
+.button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}

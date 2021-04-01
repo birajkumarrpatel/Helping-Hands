@@ -1,0 +1,50 @@
+<form class="example-form temp" (submit)="searchJobs()" >
+  <mat-form-field class="example-full-width no-padding" style="padding-bottom: 0px !important;" [floatLabel]="'never'" >
+    <!-- <mat-label>Favorite food</mat-label> -->
+    <input matInput placeholder="Search Job by Title, Description or Location name" name="searchString"
+      [(ngModel)]="searchString">
+    <mat-icon matSuffix style="padding-right: 5px;" (click)="searchJobs()">search</mat-icon>
+    <mat-icon matSuffix style="padding-right: 5px; padding-left: 5px;" (click)="clearSearch()">cancel</mat-icon>
+  </mat-form-field>
+</form>
+
+<div *ngIf="worksList && worksList.length === 0" style="margin-top: 50px; text-align: center;">
+  <div layout="column" layout-align="center center" class="tc-grey-500 mat-typography pad-lg">
+    <img src="https://res.cloudinary.com/djploevtk/image/upload/v1616501327/2953962_lluwvf.jpg" style="width: 30%;" />
+    <br><br>
+  </div>
+</div>
+
+<!-- JOB CARDS -->
+<div class="content">
+  <div fxLayout="row wrap" fxLayoutGap="12px grid">
+    <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let job of worksList; let i = index">
+      <mat-card class="mat-elevation-z4" (click)="viewJob(job._id)" style="height: 240px;">
+        <mat-card-header>
+          <mat-card-title>{{job.title}}&nbsp; (${{job.price}})</mat-card-title>
+        </mat-card-header>
+        <br>
+        <mat-carousel timings="200ms ease-in" [autoplay]="true" interval="3000" color="white">
+          <mat-carousel-slide style="height: 100% !important; background-size: contain !important;"
+            *ngFor="let image of job.work_image; let i = index" [image]="image" [hideOverlay]="true"
+            overlayColor="#ffffff" slideHeight="100%"></mat-carousel-slide>
+        </mat-carousel>
+        <mat-card-content>
+        </mat-card-content>
+        <mat-card-actions style="text-align: center;">
+          <button mat-button>
+            <mat-icon style="color: #FDCC0D;">stars</mat-icon>&nbsp;{{job.average_rate ? job.average_rate : 0}} ({{job.total_rating_received ? job.total_rating_received : 0}})
+          </button>
+          <button mat-button>
+            <mat-icon style="color: #18bff2;">location_on</mat-icon> {{job.location.city}}
+          </button>
+
+          <button *ngIf="isLoggedIn" mat-button (click)="addToFav(job._id, i); $event.stopPropagation()">
+            <mat-icon *ngIf="!job.is_fav">favorite_border</mat-icon>
+            <mat-icon *ngIf="job.is_fav" style="color: tomato;">favorite</mat-icon>
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>

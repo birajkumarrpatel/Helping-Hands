@@ -1,0 +1,32 @@
+<div class="login-main">
+  <mat-card>
+    <div class="title">LOGIN</div>
+
+    <mat-card-content>
+      <form class="my-form">
+        <mat-form-field class="full-width">
+          <mat-label>Email</mat-label>
+          <input matInput placeholder="Email" type="email" name="email" [(ngModel)]="user.email" required>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <mat-label>Password</mat-label>
+          <input matInput placeholder="Password" type="password" name="password" [(ngModel)]="user.password" required>
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+    <mat-card-actions class="btn-center">
+      <button color="primary" (click)="login()" class="btn-login">Log In</button>
+    </mat-card-actions>
+    <!-- <br> -->
+
+  </mat-card>
+  <div class="login-card-footer">
+    <div class="left-item">
+      <span>&nbsp;<a (click)="redirectUser('/forgot-password')" class="links">Forgot
+          Password?</a></span>
+    </div>
+    <div class="right-item">
+      <span><a (click)="redirectUser('/register')" class="links">Register</a></span>
+    </div>
+  </div>
+</div>

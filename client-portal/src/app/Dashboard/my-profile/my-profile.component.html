@@ -1,0 +1,84 @@
+<mat-tab-group>
+  <!-- <mat-tab label="Activity">
+  </mat-tab> -->
+  <mat-tab label="Manage Profile">
+    <div style="text-align: center; margin-top: 15px;padding-bottom: 25px;height: auto;">
+      <div class="login-main">
+        <img width="120px" height="120px" [src]="myProfile.picture" />
+        <div style="position: unset;margin: -13px;">
+          <label for="file-input">
+            <span class="upload-profile">
+              <span class="material-icons" style="margin: -5px;">
+                camera_enhance
+              </span>
+            </span>
+          </label>
+          <input id="file-input" style="display: none" type="file" (change)="uploadProfilePicture($event.target.files)"
+            accept="image/*" />
+        </div>
+      </div>
+    </div>
+
+    <mat-card style="margin: 10px; padding: 10px;">
+      <mat-card-content>
+        <form class="my-form">
+          <mat-form-field class="full-width">
+            <mat-label>Name</mat-label>
+            <input matInput placeholder="Name" type="text" name="name" [(ngModel)]="myProfile.name"
+              required>
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <mat-label>Phone Number</mat-label>
+            <input matInput placeholder="phone" type="text" name="phone" [(ngModel)]="myProfile.mobile_number">
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="email" type="text" name="email" [(ngModel)]="myProfile.email"
+              disabled=true>
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <mat-label>Address</mat-label>
+            <input matInput placeholder="address" type="text" name="address" [(ngModel)]="myProfile.address">
+          </mat-form-field>
+        </form>
+      </mat-card-content>
+      <mat-card-actions class="btn-center" style="margin: 5px">
+        <button color="primary" (click)="changeProfile()" class="btn-login">Save</button>
+      </mat-card-actions>
+    </mat-card>
+
+  </mat-tab>
+
+  <!-- CHANGE PASSWORD TAB -->
+  <mat-tab label="Change Password">
+    <div class="login-main">
+      <mat-card style="margin-bottom: 10px;">
+        <mat-card-content>
+          <form class="my-form">
+            <mat-form-field class="full-width">
+              <mat-label>Current Password</mat-label>
+              <input matInput placeholder="Current Password" type="password" name="password"
+                [(ngModel)]="user.currentPassword" required>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+              <mat-label>New Password</mat-label>
+              <input matInput placeholder="Current Password" type="password" name="password"
+                [(ngModel)]="user.newPassword" required>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+              <mat-label>Confirm Password</mat-label>
+              <input matInput placeholder="Current Password" type="password" name="password"
+                [(ngModel)]="user.confirmPassword" required>
+            </mat-form-field>
+            <span *ngIf="passwordError" class="error-msg">{{ passwordError }}</span>
+          </form>
+        </mat-card-content>
+        <mat-card-actions class="btn-center">
+          <button color="primary" (click)="changePassword()" class="btn-login">Change Password</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+
+  </mat-tab>
+
+</mat-tab-group>

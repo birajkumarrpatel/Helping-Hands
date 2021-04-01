@@ -1,0 +1,126 @@
+::ng-deep .mat-tab-group.mat-primary .mat-ink-bar {
+  background-color: rgb(25, 145, 181) !important;
+}
+
+.login-main {
+  margin: auto;
+  width: 60%;
+  max-width: 100%;
+  margin-top: 50px;
+}
+
+.title {
+  text-align: center;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.btn-center {
+  text-align: center;
+}
+
+.btn-login {
+  background: #1991b5;
+  color: white;
+  padding: 5px 10px 5px 10px;
+  font-size: 16px;
+  font-weight: 300;
+  border-radius: 5px;
+}
+
+.links {
+  color: #1991b5;
+  font-weight: 500
+}
+
+.login-card-footer {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin-left: 5px;
+  margin-right: 5px;
+  font-size: 14px;
+}
+
+.left-item {
+  float: left;
+}
+
+.right-item {
+  float: right;
+}
+
+@media only screen and (max-width: 768px) {
+  .login-main {
+    margin: auto;
+    width: 80%;
+    max-width: 100%;
+    margin-top: 35px;
+  }
+  .right-item {
+    float: left;
+  }
+  .btn-login {
+    background: #1991b5;
+    color: white;
+    padding: 3px 8px 3px 8px;
+    font-size: 14px;
+    font-weight: 300;
+    border-radius: 5px;
+  }
+  .title {
+    text-align: center;
+    font-weight: 500;
+    font-size: 16px;
+  }
+  .login-card-footer {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    margin-left: 5px;
+    margin-right: 5px;
+    font-size: 12px;
+  }
+}
+
+img {
+  border-radius: 50%;
+  border: 2px solid #f5c6c6;
+}
+
+@media only screen and (max-width: 320px) {
+  .login-main {
+    margin: auto;
+    width: 95%;
+    max-width: 100%;
+    margin-top: 30px;
+  }
+  .right-item {
+    float: left;
+  }
+  .btn-login {
+    background: #1991b5;
+    color: white;
+    padding: 3px 8px 3px 8px;
+    font-size: 14px;
+    font-weight: 300;
+    border-radius: 5px;
+  }
+  .title {
+    text-align: center;
+    font-weight: 500;
+    font-size: 16px;
+  }
+  .login-card-footer {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    margin-left: 5px;
+    margin-right: 5px;
+    font-size: 12px;
+  }
+}
+::ng-deep .mat-form-field-underline {
+  display: block;
+}
